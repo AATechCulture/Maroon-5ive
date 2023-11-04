@@ -30,5 +30,6 @@ const styles = StyleSheet.create({
         height: 150,
         width: 450,
     }
+
 })
 export default Footer;
