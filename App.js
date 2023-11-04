@@ -1,182 +1,33 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const totalSeats = 172; // Total number of seats
-const seatsPerRow = 3; // Number of seats per row
-const screenWidth = Dimensions.get('window').width; // Get the screen width
-const seatSize = screenWidth / (seatsPerRow * 2.5); // Calculate seat size based on screen width
+import Page1 from './screens/Page1';
+import Page2 from './screens/Page2';
+import Page3 from './screens/Page3';
+import Page4 from './screens/Page4';
+import Page5 from './screens/Page5';
 
-const numRows = Math.ceil(totalSeats / (seatsPerRow * 2));
-const numCols = seatsPerRow;
 
-const leftSideSeats = [];
-const rightSideSeats = [];
+const Stack = createStackNavigator();
 
-// Create arrays to track the availability of seats (0 for available, 1 for occupied)
-const leftSeatAvailability = [];
-const rightSeatAvailability = [];
+export default function App() {
 
-for (let row = 0; row < numRows; row++) {
-  const leftRow = [];
-  const rightRow = [];
-  for (let col = 0; col < numCols; col++) {
-    // Simulate seat availability (0 for available, 1 for occupied)
-    const isOccupied = Math.random() < 0.5 ? 0 : 1;
-    leftRow.push(isOccupied);
-    rightRow.push(isOccupied);
-    leftSeatAvailability.push(isOccupied);
-    rightSeatAvailability.push(isOccupied);
-  }
-  leftSideSeats.push(leftRow);
-  rightSideSeats.push(rightRow);
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
-  },
-  side: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  seat: {
-    width: seatSize,
-    height: seatSize,
-    margin: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  seatOccupied: {
-    backgroundColor: 'red',
-  },
-  seatAvailable: {
-    backgroundColor: 'green',
-  },
-  seatSelected: {
-    backgroundColor: 'blue',
-  },
-  seatText: {
-    color: 'white',
-  },
-});
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedLeftSeats: [], // Track the currently selected seats in the left column
-      selectedRightSeats: [], // Track the currently selected seats in the right column
-    };
-  }
-
-  handleLeftSeatPress(row, col) {
-    const { selectedLeftSeats } = this.state;
-    const isSelected = selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
-    if (isSelected) {
-      // Deselect the seat
-      const updatedSelectedSeats = selectedLeftSeats.filter(
-        (seat) => !(seat.row === row && seat.col === col)
-      );
-      this.setState({ selectedLeftSeats: updatedSelectedSeats });
-    } else {
-      // Select the seat
-      this.setState({
-        selectedLeftSeats: [...selectedLeftSeats, { row, col }],
-      });
-    }
-  }
-
-  handleRightSeatPress(row, col) {
-    const { selectedRightSeats } = this.state;
-    const isSelected = selectedRightSeats.some((seat) => seat.row === row && seat.col === col);
-    if (isSelected) {
-      // Deselect the seat
-      const updatedSelectedSeats = selectedRightSeats.filter(
-        (seat) => !(seat.row === row && seat.col === col)
-      );
-      this.setState({ selectedRightSeats: updatedSelectedSeats });
-    } else {
-      // Select the seat
-      this.setState({
-        selectedRightSeats: [...selectedRightSeats, { row, col }],
-      });
-    }
-  }
-
-  isLeftSeatSelected(row, col) {
-    const { selectedLeftSeats } = this.state;
-    return selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
-  }
-
-  isRightSeatSelected(row, col) {
-    const { selectedRightSeats } = this.state;
-    return selectedRightSeats.some((seat) => seat.row === row && seat.col === col);
-  }
-
-  render() {
-    return (
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.side}>
-            {leftSideSeats.map((row, rowIndex) => (
-              <View key={rowIndex} style={styles.row}>
-                {row.map((isOccupied, colIndex) => (
-                  <TouchableOpacity
-                    key={colIndex}
-                    style={[
-                      styles.seat,
-                      isOccupied
-                        ? styles.seatOccupied
-                        : this.isLeftSeatSelected(rowIndex, colIndex)
-                        ? styles.seatSelected
-                        : styles.seatAvailable,
-                    ]}
-                    onPress={() => this.handleLeftSeatPress(rowIndex, colIndex)}
-                  >
-                    <View>
-                      <Text style={styles.seatText}>
-                        {isOccupied ? 'X' : '0'}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            ))}
-          </View>
-          <View style={styles.side}>
-            {rightSideSeats.map((row, rowIndex) => (
-              <View key={rowIndex} style={styles.row}>
-                {row.map((isOccupied, colIndex) => (
-                  <TouchableOpacity
-                    key={colIndex}
-                    style={[
-                      styles.seat,
-                      isOccupied
-                        ? styles.seatOccupied
-                        : this.isRightSeatSelected(rowIndex, colIndex)
-                        ? styles.seatSelected
-                        : styles.seatAvailable,
-                    ]}
-                    onPress={() => this.handleRightSeatPress(rowIndex, colIndex)}
-                  >
-                    <View>
-                      <Text style={styles.seatText}>
-                        {isOccupied ? '1' : '0'}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            ))}
-          </View>
-        </View>
-      </ScrollView>
-    );
-  }
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Page1"
+      // screenOptions={{
+      //   headerShown: false, // Hide the header
+      // }}
+      >
+        <Stack.Screen name= "Page1" component={Page1} />
+        <Stack.Screen name= "Page2" component={Page2} />
+        <Stack.Screen name= "Page3" component={Page3} />
+        <Stack.Screen name= "Page4" component={Page4} />
+        <Stack.Screen name= "Page5" component={Page5} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
