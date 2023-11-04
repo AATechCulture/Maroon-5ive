@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
   },
   questionBox: {
-    backgroundColor: "white",
-    padding: 20,
+    backgroundColor: "#87CEEB",
+    padding: 10,
     borderRadius: 10,
     width: "80%",
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: 30,
   },
   questionText: {
     fontSize: 20,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   exclusiveText: {
     // Your existing styles for the "Next" button
-    // ...
+    mariginTop: 20,
   },
   // Add any other styles you need for your app
 });
