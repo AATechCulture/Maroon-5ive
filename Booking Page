@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
 
 const totalSeats = 172; // Total number of seats
 const seatsPerRow = 3; // Number of seats per row
@@ -22,9 +15,6 @@ const rightSideSeats = [];
 // Create arrays to track the availability of seats (0 for available, 1 for occupied)
 const leftSeatAvailability = [];
 const rightSeatAvailability = [];
-
-// Define column labels
-const columnLabels = ['A', 'B', 'C', 'D', 'E', 'F'];
 
 for (let row = 0; row < numRows; row++) {
   const leftRow = [];
@@ -46,18 +36,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 10,
-    backgroundColor: 'black',
-    paddingTop: 20,
   },
   side: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   seat: {
     width: seatSize,
@@ -67,40 +53,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   seatOccupied: {
-    backgroundColor: 'grey',
+    backgroundColor: 'red',
   },
   seatAvailable: {
-    backgroundColor: 'darkblue',
+    backgroundColor: 'green',
   },
   seatSelected: {
-    backgroundColor: 'grey',
+    backgroundColor: 'blue',
   },
   seatText: {
     color: 'white',
   },
-  rowNumberContainer: {
-    width: 20,
-    alignItems: 'center',
-  },
-  rowNumberText: {
-    fontSize: 14,
-    color: 'white',
-  },
-  columnLabel: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: 'white',
-  },
 });
 
-export default class Page4 extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedLeftSeats: [], // Track the currently selected seats in the left column
       selectedRightSeats: [], // Track the currently selected seats in the right column
-      storedNumber: props.groupnumber, // Store the parsed number here
-      setgroupnumber: props.setgroupnumber
     };
   }
 
@@ -123,7 +94,7 @@ export default class Page4 extends Component {
 
   handleRightSeatPress(row, col) {
     const { selectedRightSeats } = this.state;
-    const isSelected = selectedRightSeats.some((seat) => seat.row === row &&  seat.col === col);
+    const isSelected = selectedRightSeats.some((seat) => seat.row === row && seat.col === col);
     if (isSelected) {
       // Deselect the seat
       const updatedSelectedSeats = selectedRightSeats.filter(
@@ -175,9 +146,6 @@ export default class Page4 extends Component {
                     </View>
                   </TouchableOpacity>
                 ))}
-                <View style={styles.rowNumberContainer}>
-                  <Text style={styles.rowNumberText}>{rowIndex + 1}</Text>
-                </View>
               </View>
             ))}
           </View>
@@ -199,7 +167,7 @@ export default class Page4 extends Component {
                   >
                     <View>
                       <Text style={styles.seatText}>
-                        {isOccupied ? 'X' : '0'}
+                        {isOccupied ? '1' : '0'}
                       </Text>
                     </View>
                   </TouchableOpacity>
