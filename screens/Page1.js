@@ -3,8 +3,8 @@ import { View, Text, TextInput, TouchableOpacity, StatusBar, Button, ImageBackgr
 import { NavigationContainer } from '@react-navigation/native';
 import styles from '../components/Styles';
 import Footer from '../Footer';
-import { Image } from 'react-native';
 import { StyleSheet } from 'react-native';
+import Sky from "../Images/sky.png"
 
 export default function Page1({ navigation}) {
 
@@ -24,12 +24,12 @@ export default function Page1({ navigation}) {
     
     <View style={styles.startBody}>
       <ImageBackground 
-          source={require("C:/Users/ttaay/repo/Maroon-5ive/Images/sky.png")}
+          source={require("../Images/sky.png")}
           style={styles.background}
         />
       <View style={styles.exclusiveText}>
       </View>
-      
+
       <TouchableOpacity onPress={() => navigation.navigate('Page2')}>
           <Footer />
       </TouchableOpacity>
@@ -45,6 +45,7 @@ const background = StyleSheet.create({
     width: '100%',
     height: '50%',
     resizeMode: 'contain', 
+    backgroundColor: "rgba(0,0,0,0)"
   },
 
 });
