@@ -1,20 +1,34 @@
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'react-native';
+
+
 const Footer = () => {
     return (
-       <View style = {StyleSheet.footer}>
-        <Text> Footer </Text>
-
+        
+        <View>       
+        <Image 
+          source={require("./Images/Footer.png")}
+          style={styles.Logo}
+        />
+         
        </View>
+       
     );
 };
 
-const stlyes = StyleSheet.create({
-    footer: {
-        height: 60,
-        backgroundColor: 'black',
-        padding: 10,
-        alignItems: 'bottom',
+const styles = StyleSheet.create({
+    font: {
+        color: "#085abd",
+        fontSize: 17,
+        fontWeight: "bold",
+        // fontFamily: "Courier",
+        bottom: -45,
+    },
+    Logo: {
+        top: 275,
+        height: 150,
+        width: 450,
     }
 })
 export default Footer;

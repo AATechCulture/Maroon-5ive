@@ -10,25 +10,24 @@ import Page5 from './screens/Page5';
 
 
 const Stack = createStackNavigator();
-import Footer from './Footer';
 
 export default function App() {
 
 
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Page1"
+      // screenOptions={{
+      //   headerShown: false, // Hide the header
+      // }}
+      >
+        <Stack.Screen name= "Page1" component={Page1} />
+        <Stack.Screen name= "Page2" component={Page2} />
+        <Stack.Screen name= "Page3" component={Page3} />
+        <Stack.Screen name= "Page4" component={Page4} />
+        <Stack.Screen name= "Page5" component={Page5} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
