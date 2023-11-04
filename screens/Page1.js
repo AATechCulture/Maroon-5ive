@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import styles from '../components/Styles';
 import Footer from '../Footer';
 
+
 export default function Page1({ navigation }) {
   const handleLogin = () => {
     // Add your Page1 logic here

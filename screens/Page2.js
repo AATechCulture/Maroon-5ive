@@ -13,18 +13,35 @@ import styles from "../components/Styles";
 import Footer from "../Footer";
 
 export default function Page2({ navigation }) {
+
+  const [choice, setChoice] = useState (false)
+
   return (
     <View style={styles.startBody}>
       <View style={styles.questionBox}>
         <Text style={styles.questionText}>Are you traveling with family?</Text>
         <View style={styles.checkboxOption}>
-          <Text>Yes</Text>
+          <Text
+            onPress={() => {
+              setChoice(true);
+            }}
+          >
+            Yes
+          </Text>
           <CheckBox />
 
-          <View style={styles.checkboxOption}>
-            <Text>No</Text>
+          <View>
+            <Text
+              style={styles.checkbox}
+              onPress={() => {
+                setChoice(false);
+              }}
+            >
+              No
+            </Text>
             <CheckBox />
           </View>
+          {choice ? <Text>It exist</Text> : <Text></Text>}
         </View>
         <Footer />
       </View>
