@@ -3,21 +3,11 @@ import { View, Text, TextInput, TouchableOpacity, StatusBar, Button, ImageBackgr
 import { NavigationContainer } from '@react-navigation/native';
 import styles from '../components/Styles';
 import Footer from '../Footer';
-import { StyleSheet } from 'react-native';
-import Sky from "../Images/sky.png"
 
-export default function Page1({ navigation}) {
-
-
-
-
-  const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-
+export default function Page1({ navigation }) {
   const handleLogin = () => {
     // Add your Page1 logic here
-    console.log('Page1 pressed');
+    console.log("Page1 pressed");
   };
 
   return (
@@ -28,25 +18,14 @@ export default function Page1({ navigation}) {
           style={styles.background}
         />
       <View style={styles.exclusiveText}>
+        <TouchableOpacity onPress={() => navigation.navigate("Page2")}>
+          <Text>Page 2</Text>
+        </TouchableOpacity>
+        
       </View>
-
-      <TouchableOpacity onPress={() => navigation.navigate('Page2')}>
-          <Footer />
-      </TouchableOpacity>
-    
-    
+      
+    <Footer />
+      
     </View>
-    
   );
-};
-const background = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    width: '100%',
-    height: '50%',
-    resizeMode: 'contain', 
-    backgroundColor: "rgba(0,0,0,0)"
-  },
-
-});
-
+}
