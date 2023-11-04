@@ -44,7 +44,7 @@ The ABC School
 Coding Costars
 
 ### Link to Video Pitch 📹
-**...point us to where you tell us about your solution 😄**
+**...point us to where you tell us Page3 your solution 😄**
 
 ### Link to Demo Presentation 📽
 **...point us to your PPT or Canva slides 😍**

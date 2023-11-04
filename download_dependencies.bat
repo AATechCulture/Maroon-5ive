@@ -1,3 +1,3 @@
 @echo off
 
-npm i axios --save
+npm i axios react-native --save
