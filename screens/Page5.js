@@ -30,7 +30,7 @@ useEffect(()=>{
           </View>
           <View style={[
             styles2.centeredBox,
-            { width: boxWidth, height: boxHeight, marginRight: rightMargin }
+            { width: boxWidth, height: boxHeight,}
           ]}>
             <Image
               source={require('../Images/BlackFamily.png')}
@@ -59,7 +59,7 @@ const background = StyleSheet.create({
 const styles2 = StyleSheet.create({
   centeredBox: {
     flex: -3,
-    left: 60,
+    left: 0,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'green',
@@ -68,6 +68,7 @@ const styles2 = StyleSheet.create({
     bottom: 300
   },
   circularPhoto: {
+    top: 10,
     width: 100,
     height: 100,
     borderRadius: 50,
