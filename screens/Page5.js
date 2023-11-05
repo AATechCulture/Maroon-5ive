@@ -1,9 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import styles from '../components/Styles';
+import EmailApi from "../api/EmailApi"
 
-export default function Page5({ navigation, boxWidth, boxHeight }) {
-  <Page5 navigation={navigation} boxWidth={150} boxHeight={150} />
+const boxWidth = "auto" 
+const boxHeight = 150
+
+export default function Page5({ navigation}) {
+  
+
+  //this is the on load function
+  useEffect(()=>{
+    //when the screen loads, send email
+    //EmailApi()
+
+  },[])
+
+  // <Page5 navigation={navigation} boxWidth={150} boxHeight={150} />
   return (
     <View style={styles.container}>
       <ImageBackground
