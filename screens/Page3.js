@@ -18,7 +18,7 @@ export default function Page3({ navigation }) {
     <View style={styles.startBody}>
       <View style={styles.exclusiveText}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Page4", { seatsToOccupy })}
+          onPress={() => navigation.navigate("Page3", { seatsToOccupy })}
         >
           <Text>Page 4</Text>
         </TouchableOpacity>
