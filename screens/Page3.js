@@ -7,65 +7,12 @@ import {
   StatusBar,
   Button,
   StyleSheet,
-  
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import styles from "../components/Styles";
 import FlightApi from "../api/FlightData";
 
 function DynamicComponent() {
-  return (
-    <View style={styles.dynamicComponent}>
-      <Text>Dynamic Component</Text>
-    </View>
-  );
-}
-
-
-export default function Page3({ navigation }) {
-  const [seatsToOccupy, setSeatsToOccupy] = useState(2);
-  const [flightData, setFlightData] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        //give me the flights from and to "destination". "code" "origin": {"city": "Philadelphia", "code": "PHL"
-        //give me the times "departureTime": "2020-01-01T10:29:42.855-05:00"
-        //the duration of the flight "duration": {"hours": 0, "locale": "0h 15m", "minutes": 15}
-        //give me the price [make random prices]
-        const data = await FlightApi();
-        setFlightData(data);
-        
-        for(let i = 0; i < data.length; i++){
-          const aircraft = data[i].aircraft
-        const destination = data[i].destination
-        const origin = data[i].origin
-        const departureTime = data[i].departureTime
-        const duration = data[i].duration
-        console.log(origin)
-        }
-        
-
-        
-        console.log("got data", data.length);
-        // const data = await FlightApi();
-        setFlightData(data);
-        console.log(data);
-        console.log("got data");
-      } catch (error) {
-        console.error("Error fetching flight data:", error);
-      }
-    }
-
-    // fetchData();
-  }, []); // The empty dependency array ensures this effect runs only once, like componentDidMount
-
-  const componentsToRender = [];
-
-  for (let i = 0; i < 5; i++) {
-    componentsToRender.push(<DynamicComponent key={i} />);
-  }
-
   // return (
   //   <View style={styles.startBody}>
   //     <View style={styles.questionContainer}>
@@ -79,17 +26,20 @@ export default function Page3({ navigation }) {
   //         }
 
   return (
-    <View style={styles.startBody}>
-      <View style={style.box}>
-        <Text>
-          <Text style={style.text}> Depart </Text> <Text style={style.text2}> DFW to HSV</Text>
-        </Text>
-        <Text style={style.text3}> Saturday, November 11, 2023 </Text>
-        <Text style={style.text4}> </Text>
-        <Text style={style.text4}> </Text>
-        <View style={style.box2}></View>
-        <Text></Text>
-        <Text style={style.text6}> American Airlines flights may be listed first.</Text>
+    <View style={style.box}>
+      <Text>
+        <Text style={style.text}> Depart </Text>{" "}
+        <Text style={style.text2}> DFW to HSV</Text>
+      </Text>
+      <Text style={style.text3}> Saturday, November 11, 2023 </Text>
+      <Text style={style.text4}> </Text>
+      <Text style={style.text4}> </Text>
+      <View style={style.box2}></View>
+      <Text></Text>
+      <Text style={style.text6}>
+        {" "}
+        American Airlines flights may be listed first.
+      </Text>
       <View style={APIcomponent.box}>
         <View style={APIcomponent.departureBox}>
           <Text style={APIcomponent.text1}>Hello</Text>
@@ -116,23 +66,83 @@ export default function Page3({ navigation }) {
           <Text style={APIcomponent.text1}>Price</Text>
         </View>
       </View>
-      </View>
+    </View>
+  );
+}
+
+export default function Page3({ navigation }) {
+  const [seatsToOccupy, setSeatsToOccupy] = useState(2);
+  const [flightData, setFlightData] = useState(null);
+  const aircrafts = [];
+  const destinations = [];
+  const origins = [];
+  const departureTimes = [];
+  const durations = [];
+
+  //useEffect(() => {
+    // async function fetchData() {
+    //   try {
+    //     //give me the flights from and to "destination". "code" "origin": {"city": "Philadelphia", "code": "PHL"
+    //     //give me the times "departureTime": "2020-01-01T10:29:42.855-05:00"
+    //     //the duration of the flight "duration": {"hours": 0, "locale": "0h 15m", "minutes": 15}
+    //     //give me the price [make random prices]
+    //     const data = await FlightApi();
+    //     setFlightData(data);
+
+    //     for (let i = 0; i < data.length; i++) {
+    //       const aircraft = data[i].aircraft;
+    //       const destination = data[i].destination;
+    //       const origin = data[i].origin;
+    //       const departureTime = data[i].departureTime;
+    //       const duration = data[i].duration;
+
+    //       if (aircraft.code == "JRK") {
+    //         aircrafts.push(aircraft);
+    //         destinations.push(destination);
+    //         origins.push(origin);
+    //         departureTimes.push(departureTime);
+    //         durations.push(duration);
+    //       }
+    //     }
+
+    //     console.log("got data", data.length);
+    //     // const data = await FlightApi();
+    //     setFlightData(data);
+    //     console.log(data);
+    //     console.log("got data");
+    //   } catch (error) {
+    //     console.error("Error fetching flight data:", error);
+    //   }
+    // }
+
+    // fetchData();
+  // }, []); // The empty dependency array ensures this effect runs only once, like componentDidMount
+
+  const componentsToRender = [];
+
+  for (let i = 0; i < 5; i++) {
+    componentsToRender.push(<DynamicComponent key={i} />);
+  }
+
+  return (
+    <View style={styles.startBody}>
+      <componentsToRender />
       <TouchableOpacity
-          onPress={() => navigation.navigate("Page4", { navigation })}
-        >
-          <Text>Next</Text>
-        </TouchableOpacity>
+        onPress={() => navigation.navigate("Page4", { navigation })}
+      >
+        <Text>Next</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const style = StyleSheet.create({
   box: {
-    width: "90%", 
-    height: "18%", 
-    backgroundColor: '#E5E4E2', 
-    borderWidth: 1, 
-    borderColor: '#E5E4E2', 
+    width: "90%",
+    height: "18%",
+    backgroundColor: "#E5E4E2",
+    borderWidth: 1,
+    borderColor: "#E5E4E2",
     bottom: 325,
     borderRadius: 10,
   },
@@ -145,43 +155,42 @@ const style = StyleSheet.create({
   },
   text: {
     fontSize: 30,
-    color: "green"
+    color: "green",
   },
   text2: {
     fontSize: 25,
-    color: "#085abd"
+    color: "#085abd",
   },
   text3: {
     fontSize: 18,
-    color: "gray"
+    color: "gray",
   },
   text4: {
     fontSize: 18,
-    color: "black"
+    color: "black",
   },
   text5: {
     fontSize: 18,
-    color: "gray"
+    color: "gray",
   },
   text6: {
     fontSize: 18,
     color: "#0096FF",
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
   },
-  text6:{
+  text6: {
     fontSize: 17,
-    color: "green"
-  }
-
+    color: "green",
+  },
 });
 const APIcomponent = StyleSheet.create({
   box: {
     display: "flex",
     width: "100%",
-    height: 150,  
-    backgroundColor: '#E5E4E2', 
-    borderWidth: 1, 
-    borderColor: '#E5E4E2', 
+    height: 150,
+    backgroundColor: "#E5E4E2",
+    borderWidth: 1,
+    borderColor: "#E5E4E2",
     position: "relative",
     top: 30,
     borderRadius: 10,
@@ -193,7 +202,7 @@ const APIcomponent = StyleSheet.create({
     height: 30,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   destinationBox: {
     top: -20,
@@ -202,7 +211,7 @@ const APIcomponent = StyleSheet.create({
     height: 30,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   departureTime: {
     top: -15,
@@ -211,7 +220,7 @@ const APIcomponent = StyleSheet.create({
     height: 30,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   destinationTime: {
     top: -45,
@@ -220,7 +229,7 @@ const APIcomponent = StyleSheet.create({
     height: 30,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   AmountOfStops: {
     top: -45,
@@ -229,7 +238,7 @@ const APIcomponent = StyleSheet.create({
     height: 30,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   FlightTime: {
     top: -75,
@@ -238,7 +247,7 @@ const APIcomponent = StyleSheet.create({
     height: 30,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   DollarAmount: {
     top: -170,
@@ -247,7 +256,7 @@ const APIcomponent = StyleSheet.create({
     height: 50,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   FlightType: {
     top: -170,
@@ -256,10 +265,10 @@ const APIcomponent = StyleSheet.create({
     height: 30,
     borderColor: "black",
     borderWidth: 1,
-    alignItems : "center",
+    alignItems: "center",
   },
   text1: {
     fontSize: 20,
     color: "gray",
-  }
-})
+  },
+});
