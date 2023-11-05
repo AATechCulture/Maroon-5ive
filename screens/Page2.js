@@ -9,11 +9,14 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { CheckBox } from "react-native-elements";
+import { Picker } from "@react-native-picker/picker";
 import styles from "../components/Styles";
 import Footer from "../Footer";
 
 export default function Page2({ navigation }) {
   const [choice, setChoice] = useState(false);
+  const [selectedName, setSelectedName] = useState("Mike Jones");
+  const names = ["MIke Jones", "Sara T", "Ruth", "Jhon"];
 
   return (
     <View style={styles.startBody}>
@@ -39,7 +42,19 @@ export default function Page2({ navigation }) {
           </Text>
           <CheckBox checked={!choice} onPress={() => setChoice(false)} />
         </View>
-        {choice ? <Text>It exists</Text> : <Text></Text>}
+        {choice ? (
+          <View style={styles.dropdownContainer}>
+            <Text>Select Account Holder:</Text>
+            <Picker
+              selectedValue={selectedName}
+              onValueChange={(itemValue) => setSelectedName(itemValue)}
+            >
+              {names.map((name, index) => (
+                <Picker.Item key={index} label={name} value={name} />
+              ))}
+            </Picker>
+          </View>
+        ) : null}
       </View>
       <Footer />
       <View style={styles.exclusiveText}>
