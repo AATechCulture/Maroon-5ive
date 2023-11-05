@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -88,19 +88,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Page4({ route }){
-  const { seatsToOccupy } = route.params;
-  const [selectedLeftSeats, setSelectedLeftSeats] = useState([]);
-  const [selectedRightSeats, setSelectedRightSeats] = useState([]);
+export default class Page4 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedLeftSeats: [], // Track the currently selected seats in the left column
+      selectedRightSeats: [], // Track the currently selected seats in the right column
+      storedNumber: props.groupnumber, // Store the parsed number here
+      setgroupnumber: props.setgroupnumber
+    };
+  }
 
-  useEffect(() => {
-    // Additional logic to print information to the screen
-    const infoToPrint = 'Welcome to Page4!'; // Replace with the information you want to print
-    // You can use this infoToPrint in your component.
-  }, []);
-  
-
-  const handleLeftSeatPress =(row, col)=>{
+  handleLeftSeatPress(row, col) {
     const { selectedLeftSeats } = this.state;
     const isSelected = selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
 
@@ -115,10 +114,11 @@ export default function Page4({ route }){
       this.setState({
         selectedLeftSeats: [...selectedLeftSeats, { row, col }],
       });
+      
     }
   }
 
-  const handleRightSeatPress = (row, col)=>{
+  handleRightSeatPress(row, col) {
     const { selectedRightSeats } = this.state;
     const isSelected = selectedRightSeats.some((seat) => seat.row === row &&  seat.col === col);
 
@@ -136,16 +136,17 @@ export default function Page4({ route }){
     }
   }
 
+  isLeftSeatSelected(row, col) {
+    const { selectedLeftSeats } = this.state;
+    return selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
+  }
 
-// Function to check if a seat on the left side is selected
-const isLeftSeatSelected = (row, col) => {
-  return selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
-};
+  isRightSeatSelected(row, col) {
+    const { selectedRightSeats } = this.state;
+    return selectedRightSeats.some((seat) => seat.row === row && seat.col === col);
+  }
 
-// Function to check if a seat on the right side is selected
-const isRightSeatSelected = (row, col) => {
-  return selectedRightSeats.some((seat) => seat.row === row && seat.col === col);
-};
+  render() {
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -159,11 +160,11 @@ const isRightSeatSelected = (row, col) => {
                       styles.seat,
                       isOccupied
                         ? styles.seatOccupied
-                        : isLeftSeatSelected(rowIndex, colIndex)
+                        : this.isLeftSeatSelected(rowIndex, colIndex)
                         ? styles.seatSelected
                         : styles.seatAvailable,
                     ]}
-                    onPress={() => handleLeftSeatPress(rowIndex, colIndex)}
+                    onPress={() => this.handleLeftSeatPress(rowIndex, colIndex)}
                   >
                     <View>
                       <Text style={styles.seatText}>
@@ -188,11 +189,11 @@ const isRightSeatSelected = (row, col) => {
                       styles.seat,
                       isOccupied
                         ? styles.seatOccupied
-                        : isRightSeatSelected(rowIndex, colIndex)
+                        : this.isRightSeatSelected(rowIndex, colIndex)
                         ? styles.seatSelected
                         : styles.seatAvailable,
                     ]}
-                    onPress={() => handleRightSeatPress(rowIndex, colIndex)}
+                    onPress={() => this.handleRightSeatPress(rowIndex, colIndex)}
                   >
                     <View>
                       <Text style={styles.seatText}>
@@ -208,4 +209,4 @@ const isRightSeatSelected = (row, col) => {
       </ScrollView>
     );
   }
-
+}

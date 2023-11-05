@@ -12,6 +12,7 @@ import styles from "../components/Styles";
 
 export default function Page3({ navigation }) {
   const [seatsToOccupy, setSeatsToOccupy] = useState(2);
+  
 
   return (
     <View style={styles.startBody}>
