@@ -1,6 +1,21 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  buttonContainer:{
+    width:"100%",
+    display: "flex",
+    alignItems: 'center',     // Center horizontally
+  },
+  button: {
+    backgroundColor: 'green',
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   selectedValuesContainer: {
     marginTop: 20,
     paddingHorizontal: 10,
