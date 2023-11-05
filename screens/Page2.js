@@ -13,8 +13,7 @@ import styles from "../components/Styles";
 import Footer from "../Footer";
 
 export default function Page2({ navigation }) {
-
-  const [choice, setChoice] = useState (false)
+  const [choice, setChoice] = useState(false);
 
   return (
     <View style={styles.startBody}>
@@ -28,24 +27,21 @@ export default function Page2({ navigation }) {
           >
             Yes
           </Text>
-          <CheckBox />
+          <CheckBox checked={choice} onPress={() => setChoice(true)} />
 
-          <View>
-            <Text
-              style={styles.checkbox}
-              onPress={() => {
-                setChoice(false);
-              }}
-            >
-              No
-            </Text>
-            <CheckBox />
-          </View>
-          {choice ? <Text>It exist</Text> : <Text></Text>}
+          <Text
+            style={styles.checkbox} // Add any necessary styling here
+            onPress={() => {
+              setChoice(false);
+            }}
+          >
+            No
+          </Text>
+          <CheckBox checked={!choice} onPress={() => setChoice(false)} />
         </View>
-        <Footer />
+        {choice ? <Text>It exists</Text> : <Text></Text>}
       </View>
-
+      <Footer />
       <View style={styles.exclusiveText}>
         <TouchableOpacity onPress={() => navigation.navigate("Page3")}>
           <Text>Page 3</Text>

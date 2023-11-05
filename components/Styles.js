@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
   },
   questionBox: {
-    backgroundColor: "#87CEEB",
+    backgroundColor: "white",
     padding: 10,
     borderRadius: 10,
     width: "80%",
     alignItems: "center",
-    marginBottom: 30,
+    marginBottom: 20,
   },
   questionText: {
     fontSize: 20,
