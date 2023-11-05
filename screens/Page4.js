@@ -100,7 +100,7 @@ export default class Page4 extends Component {
 constructor(props) {
   super(props);
   const selectedLeftSeats = this.selectSeats();
-  const {seatsToOccupy }= this.props.params
+  // const {seatsToOccupy }= this.props.params
   // console.log(seatsToOccupy)
   this.state = {
     selectedLeftSeats,
