@@ -31,55 +31,57 @@ export default function Page2({ navigation }) {
         source={require("../Images/sky.png")}
         style={background.backgroundImage}
       >
-        <View style={styles.questionBox}>
-          <View style={styles.questionTextContainer}>
-            <Text style={styles.questionText}>
-              Are you traveling with family?
-            </Text>
-          </View>
-          <View style={styles.checkboxOption}>
-            <View style={styles.checkboxItem}>
-              <Text
-                onPress={() => {
-                  setChoice(true);
-                }}
-              >
-                Yes
+        <View style={styles.questionContainer}>
+          <View style={styles.questionBox}>
+            <View style={styles.questionTextContainer}>
+              <Text style={styles.questionText}>
+                Are you traveling with family?
               </Text>
-              <CheckBox checked={choice} onPress={() => setChoice(true)} />
             </View>
-            <View style={styles.checkboxItem}>
-              <Text
-                onPress={() => {
-                  setChoice(false);
-                }}
-              >
-                No
-              </Text>
-              <CheckBox checked={!choice} onPress={() => setChoice(false)} />
+            <View style={styles.checkboxOption}>
+              <View style={styles.checkboxItem}>
+                <Text
+                  onPress={() => {
+                    setChoice(true);
+                  }}
+                >
+                  Yes
+                </Text>
+                <CheckBox checked={choice} onPress={() => setChoice(true)} />
+              </View>
+              <View style={styles.checkboxItem}>
+                <Text
+                  onPress={() => {
+                    setChoice(false);
+                  }}
+                >
+                  No
+                </Text>
+                <CheckBox checked={!choice} onPress={() => setChoice(false)} />
+              </View>
             </View>
+            {choice ? (
+              <View style={styles.dropdownContainer}>
+                <Text>Select Account Holder:</Text>
+                <Picker
+                  selectedValue={selectedName}
+                  onValueChange={(itemValue) => setSelectedName(itemValue)}
+                >
+                  {names.map((name, index) => (
+                    <Picker.Item key={index} label={name} value={name} />
+                  ))}
+                </Picker>
+              </View>
+            ) : null}
           </View>
-          {choice ? (
-            <View style={styles.dropdownContainer}>
-              <Text>Select Account Holder:</Text>
-              <Picker
-                selectedValue={selectedName}
-                onValueChange={(itemValue) => setSelectedName(itemValue)}
-              >
-                {names.map((name, index) => (
-                  <Picker.Item key={index} label={name} value={name} />
-                ))}
-              </Picker>
-            </View>
-          ) : null}
         </View>
         <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}
-
+          <TouchableOpacity
+            style={styles.button}
             onPress={() => navigation.navigate("Page3")}
           >
             <Text style={styles.buttonText}>Next</Text>
-      </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
 
