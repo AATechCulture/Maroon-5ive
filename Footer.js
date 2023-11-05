@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
         bottom: -45,
     },
     Logo: {
-        top: 275,
+        top: 0,
         height: 150,
-        width: 450,
+        width: 430,
     }
+
 })
 export default Footer;

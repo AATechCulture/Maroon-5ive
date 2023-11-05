@@ -16,7 +16,7 @@ import Footer from "../Footer";
 export default function Page2({ navigation }) {
   const [choice, setChoice] = useState(false);
   const [selectedName, setSelectedName] = useState("Mike Jones");
-  const names = ["MIke Jones", "Sara T", "Ruth", "Jhon"];
+  const names = ["Mike Jones", "Sara T", "Ruth", "Jhon"];
 
   return (
     <View style={styles.startBody}>
