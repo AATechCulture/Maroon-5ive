@@ -3,7 +3,7 @@ import axios from "axios";
 export default function FlightData(){
     console.log("email sent")
     // const http = "http://localhost:3001"
-    const http = "https://f55f-2600-100c-b22d-d0f5-cdec-2a36-3355-e67e.ngrok.io"
+    const http = " https://2b1e-2600-100c-b218-970d-8df3-333d-f796-97bc.ngrok.io"
     axios
         .get(http)
         .then((response) => {

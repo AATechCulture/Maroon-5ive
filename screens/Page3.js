@@ -29,7 +29,11 @@ export default function Page3({ navigation }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        // const data = await FlightApi();
+        //give me the flights from and to "destination". "code" "origin": {"city": "Philadelphia", "code": "PHL"
+        //give me the times "departureTime": "2020-01-01T10:29:42.855-05:00"
+        //the duration of the flight "duration": {"hours": 0, "locale": "0h 15m", "minutes": 15}
+        //give me the price [make random prices]
+        const data = await FlightApi();
         setFlightData(data);
         console.log(data);
         console.log("got data");
@@ -38,7 +42,7 @@ export default function Page3({ navigation }) {
       }
     }
 
-    // fetchData();
+     fetchData();
   }, []); // The empty dependency array ensures this effect runs only once, like componentDidMount
 
   const componentsToRender = [];
