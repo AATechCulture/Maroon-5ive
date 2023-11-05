@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     height: 55,
     justifyContent: "center",
     display: "flex",
-    top: 20,
+    top: 17,
   },
   nameAndCheckbox: {
     width: 155,
