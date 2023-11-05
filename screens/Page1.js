@@ -82,7 +82,7 @@ const style = StyleSheet.create({
   image2: {
   width: 400,
   height: 220,
-  bottom: 100,
+  bottom: 120,
   },
   image3: {
     width: 400,
