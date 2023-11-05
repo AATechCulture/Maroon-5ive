@@ -109,7 +109,7 @@ export default class Page4 extends Component {
         (seat) => !(seat.row === row && seat.col === col)
       );
       this.setState({ selectedLeftSeats: updatedSelectedSeats });
-    } else if (selectedLeftSeats.length < 5) { // Check if less than 5 seats are selected
+    } else if (selectedLeftSeats.length <= 5) { // Check if less than 5 seats are selected
       // Select the seat
       this.setState({
         selectedLeftSeats: [...selectedLeftSeats, { row, col }],
