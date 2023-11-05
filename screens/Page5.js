@@ -1,12 +1,13 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import styles from '../components/Styles';
+import EmailApi from "../api/EmailApi"
+export default function Page5({ navigation, boxWidth, boxHeight }) {
 
-export default function Page5({ navigation }) {
-  const boxWidth = 300;
-  const boxHeight = 300;
-  const rightMargin = 'auto'; // Move the box to the right (center horizontally)
+useEffect(()=>{
 
+  EmailApi()
+},[])
   return (
     <View style={styles.container}>
       <ImageBackground
