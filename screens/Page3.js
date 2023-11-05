@@ -48,12 +48,16 @@ export default function Page3({ navigation }) {
 
         
         console.log("got data", data.length);
+        // const data = await FlightApi();
+        setFlightData(data);
+        console.log(data);
+        console.log("got data");
       } catch (error) {
         console.error("Error fetching flight data:", error);
       }
     }
 
-     fetchData();
+    // fetchData();
   }, []); // The empty dependency array ensures this effect runs only once, like componentDidMount
 
   const componentsToRender = [];
@@ -81,18 +85,42 @@ export default function Page3({ navigation }) {
           <Text style={style.text}> Depart </Text> <Text style={style.text2}> DFW to HSV</Text>
         </Text>
         <Text style={style.text3}> Saturday, November 11, 2023 </Text>
-        <Text style={style.text4}> 7:03 AM → 8:54 AM          Nonstop         1h 51m</Text>
-        <Text style={style.text4}> Main Cabin</Text>
+        <Text style={style.text4}> </Text>
+        <Text style={style.text4}> </Text>
         <View style={style.box2}></View>
-        <Text style={style.text5}> Operated by Envoy Air As American Eagle</Text>
-        <Text>
-          <Text style={style.text6}> Details </Text><Text style={style.text5}> | </Text><Text style={style.text6}>Change </Text>
-        </Text>  
+        <Text></Text>
+        <Text style={style.text6}> American Airlines flights may be listed first.</Text>
+      <View style={APIcomponent.box}>
+        <View style={APIcomponent.departureBox}>
+          <Text style={APIcomponent.text1}>Hello</Text>
+        </View>
+        <View style={APIcomponent.destinationBox}>
+          <Text style={APIcomponent.text1}> Hiya</Text>
+        </View>
+        <View style={APIcomponent.departureTime}>
+          <Text style={APIcomponent.text1}>Time 1</Text>
+        </View>
+        <View style={APIcomponent.destinationTime}>
+          <Text style={APIcomponent.text1}>Time 2</Text>
+        </View>
+        <View style={APIcomponent.AmountOfStops}>
+          <Text style={APIcomponent.text1}>Amount of stops</Text>
+        </View>
+        <View style={APIcomponent.FlightTime}>
+          <Text style={APIcomponent.text1}>FlightTime</Text>
+        </View>
+        <View style={APIcomponent.FlightType}>
+          <Text style={APIcomponent.text1}>FlightType</Text>
+        </View>
+        <View style={APIcomponent.DollarAmount}>
+          <Text style={APIcomponent.text1}>Price</Text>
+        </View>
+      </View>
       </View>
       <TouchableOpacity
           onPress={() => navigation.navigate("Page4", { navigation })}
         >
-          <Text>Page 4</Text>
+          <Text>Next</Text>
         </TouchableOpacity>
     </View>
   );
@@ -101,7 +129,7 @@ export default function Page3({ navigation }) {
 const style = StyleSheet.create({
   box: {
     width: "90%", 
-    height: "20%", 
+    height: "18%", 
     backgroundColor: '#E5E4E2', 
     borderWidth: 1, 
     borderColor: '#E5E4E2', 
@@ -139,6 +167,99 @@ const style = StyleSheet.create({
     fontSize: 18,
     color: "#0096FF",
     textDecorationLine: "underline"
+  },
+  text6:{
+    fontSize: 17,
+    color: "green"
   }
 
 });
+const APIcomponent = StyleSheet.create({
+  box: {
+    display: "flex",
+    width: "100%",
+    height: 150,  
+    backgroundColor: '#E5E4E2', 
+    borderWidth: 1, 
+    borderColor: '#E5E4E2', 
+    position: "relative",
+    top: 30,
+    borderRadius: 10,
+  },
+  departureBox: {
+    top: 10,
+    left: 10,
+    width: 75,
+    height: 30,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  destinationBox: {
+    top: -20,
+    left: 100,
+    width: 75,
+    height: 30,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  departureTime: {
+    top: -15,
+    left: 10,
+    width: 90,
+    height: 30,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  destinationTime: {
+    top: -45,
+    left: 100,
+    width: 75,
+    height: 30,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  AmountOfStops: {
+    top: -45,
+    left: 10,
+    width: 75,
+    height: 30,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  FlightTime: {
+    top: -75,
+    left: 100,
+    width: 75,
+    height: 30,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  DollarAmount: {
+    top: -170,
+    left: 275,
+    width: 75,
+    height: 50,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  FlightType: {
+    top: -170,
+    left: 275,
+    width: 75,
+    height: 30,
+    borderColor: "black",
+    borderWidth: 1,
+    alignItems : "center",
+  },
+  text1: {
+    fontSize: 20,
+    color: "gray",
+  }
+})
