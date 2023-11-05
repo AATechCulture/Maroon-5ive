@@ -11,12 +11,13 @@ const styles = StyleSheet.create({
     height: 55,
     justifyContent: "center",
     display: "flex",
+    top: 20,
   },
   nameAndCheckbox: {
     width: 155,
     marginTop: 20,
     flexDirection: "row",
-    justifyContent: "flex-start", 
+    justifyContent: "2flex-start",
     alignContent: "center",
   },
   buttonContainer: {
