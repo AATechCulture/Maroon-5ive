@@ -21,6 +21,7 @@ import { useState } from "react";
 
 export default function Page2({ navigation }) {
   const [choice, setChoice] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedName, setSelectedName] = useState("Mike Jones");
   const names = ["Mike Jones", "Sara T", "Ruth", "Jhon"];
 
