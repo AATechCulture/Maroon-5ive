@@ -35,14 +35,25 @@ export default function Page3({ navigation }) {
         //give me the price [make random prices]
         const data = await FlightApi();
         setFlightData(data);
-        console.log(data);
-        console.log("got data");
+        
+        for(let i = 0; i < data.length; i++){
+          const aircraft = data[i].aircraft
+        const destination = data[i].destination
+        const origin = data[i].origin
+        const departureTime = data[i].departureTime
+        const duration = data[i].duration
+        console.log(origin)
+        }
+        
+
+        
+        console.log("got data", data.length);
       } catch (error) {
         console.error("Error fetching flight data:", error);
       }
     }
 
-     //fetchData();
+     fetchData();
   }, []); // The empty dependency array ensures this effect runs only once, like componentDidMount
 
   const componentsToRender = [];
