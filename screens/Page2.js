@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  TextInput,
+} from "react-native";
 import { CheckBox } from "react-native-elements";
 import { Picker } from "@react-native-picker/picker";
 import styles from "../components/Styles";
@@ -9,8 +15,9 @@ import Sky from "../Images/sky.png";
 
 export default function Page2({ navigation }) {
   const [choice, setChoice] = useState(false);
-  const [selectedName, setSelectedName] = useState(["Mike Jones"]); // Use an array for selectedName
-  const names = ["Mike Jones", "Sara T", "Ruth", "Jhon"];
+  const [selectedName, setSelectedName] = useState(["Mike Jones"]);
+  const [newFamilyMember, setNewFamilyMember] = useState(""); // State to hold the new family member's name
+  const names = ["Mike Jones", "Sara Jones", "Ruth Jones", "Paul Jones"];
 
   const toggleNameSelection = (name) => {
     const updatedNames = [...selectedName];
@@ -56,7 +63,7 @@ export default function Page2({ navigation }) {
             </View>
             {choice ? (
               <View style={styles.dropdownContainer}>
-                <Text>Select Account Holders:</Text>
+                <Text>Select Family Members:</Text>
                 {names.map((name, index) => (
                   <View key={index} style={styles.checkboxItem}>
                     <View style={styles.nameAndCheckbox}>
@@ -66,7 +73,6 @@ export default function Page2({ navigation }) {
                           onPress={() => toggleNameSelection(name)}
                         />
                       </View>
-
                       <Text
                         onPress={() => toggleNameSelection(name)}
                         style={styles.nameText}
@@ -76,6 +82,27 @@ export default function Page2({ navigation }) {
                     </View>
                   </View>
                 ))}
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => setNewFamilyMember("")}
+                >
+                  <Text style={styles.buttonText}>Add family member</Text>
+                </TouchableOpacity>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Enter family member's name"
+                  value={newFamilyMember}
+                  onChangeText={(text) => setNewFamilyMember(text)}
+                />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    toggleNameSelection(newFamilyMember);
+                    setNewFamilyMember("");
+                  }}
+                >
+                  <Text style={styles.buttonText}>Save</Text>
+                </TouchableOpacity>
               </View>
             ) : null}
           </View>
@@ -89,7 +116,6 @@ export default function Page2({ navigation }) {
           </TouchableOpacity>
         </View>
       </ImageBackground>
-
       <Footer />
     </View>
   );
