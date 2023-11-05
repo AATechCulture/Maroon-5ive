@@ -56,12 +56,13 @@ export default function Page2({ navigation }) {
           </View>
         ) : null}
       </View>
-      <Footer />
+      
       <View style={styles.exclusiveText}>
         <TouchableOpacity onPress={() => navigation.navigate("Page3")}>
           <Text>Page 3</Text>
         </TouchableOpacity>
       </View>
+      <Footer />
     </View>
   );
 }
