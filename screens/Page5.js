@@ -6,7 +6,7 @@ import EmailApi from "../api/EmailApi"
 const boxWidth = "auto" 
 const boxHeight = 150
 
-export default function Page5({ navigation}) {
+export default function Page5() {
   
 
   //this is the on load function
@@ -23,13 +23,6 @@ export default function Page5({ navigation}) {
         source={require('../Images/sky.png')}
         style={background.backgroundImage}
       >
-        <View style={styles.startBody}>
-          <View style={styles.exclusiveText}>
-            <TouchableOpacity onPress={() => navigation.navigate('Page1')}>
-              <Text>Navigate to page 1</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
         <View style={[
           styles2.centeredBox,
           { width: boxWidth, height: boxHeight }

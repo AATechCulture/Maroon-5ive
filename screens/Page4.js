@@ -115,6 +115,7 @@ export default class Page4 extends Component {
 constructor(props) {
   super(props);
   const selectedLeftSeats = this.selectSeats();
+  navigation = this.props.route.params.navigation;
   // const {seatsToOccupy }= this.props.params
   // console.log(seatsToOccupy)
   this.state = {
