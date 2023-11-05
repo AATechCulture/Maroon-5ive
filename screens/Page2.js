@@ -16,7 +16,8 @@ import Sky from "../Images/sky.png";
 export default function Page2({ navigation }) {
   const [choice, setChoice] = useState(false);
   const [selectedName, setSelectedName] = useState(["Mike Jones"]);
-  const [newFamilyMember, setNewFamilyMember] = useState(""); // State to hold the new family member's name
+  const [newFamilyMember, setNewFamilyMember] = useState("");
+  const [addFamily, setAddFamily] = useState(false);
   const names = ["Mike Jones", "Sara Jones", "Ruth Jones", "Paul Jones"];
 
   const toggleNameSelection = (name) => {
@@ -86,23 +87,21 @@ export default function Page2({ navigation }) {
                   style={styles.button}
                   onPress={() => setNewFamilyMember("")}
                 >
-                  <Text style={styles.buttonText}>Add family member</Text>
+                  <Text
+                    style={styles.buttonText}
+                    onPress={() => setAddFamily(true)}
+                  >
+                    Add family member
+                  </Text>
                 </TouchableOpacity>
-                <TextInput
-                  style={styles.input}
-                  placeholder="Enter family member's name"
-                  value={newFamilyMember}
-                  onChangeText={(text) => setNewFamilyMember(text)}
-                />
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                    toggleNameSelection(newFamilyMember);
-                    setNewFamilyMember("");
-                  }}
-                >
-                  <Text style={styles.buttonText}>Save</Text>
-                </TouchableOpacity>
+                {addFamily ? (
+                  <TextInput
+                    style={{ ...styles.input, fontSize: 20 }}
+                    placeholder="Enter family member's name"
+                    value={newFamilyMember}
+                    onChangeText={(text) => setNewFamilyMember(text)}
+                  />
+                ) : null}
               </View>
             ) : null}
           </View>

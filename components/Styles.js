@@ -8,12 +8,13 @@ const styles = StyleSheet.create({
   },
   nameText: {
     weight: 150,
-    height: 55,
+    height: 20,
     justifyContent: "center",
     display: "flex",
     top: 17,
   },
   nameAndCheckbox: {
+    height: 40,
     width: 155,
     marginTop: 20,
     flexDirection: "row",
