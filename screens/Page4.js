@@ -240,6 +240,14 @@ isFoundSeat(row, col) {
   render() {
     return (
       <ScrollView>
+        <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}
+
+            onPress={() => navigation.navigate("Page5")}
+          >
+            <Text style={styles.buttonText}>Next</Text>
+      </TouchableOpacity>
+        </View>
         <View style={styles.container}>
           <View style={styles.side}>
             {leftSideSeats.map((row, rowIndex) => (

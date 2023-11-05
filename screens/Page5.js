@@ -12,7 +12,7 @@ export default function Page5({ navigation}) {
   //this is the on load function
   useEffect(()=>{
     //when the screen loads, send email
-    EmailApi()
+    //EmailApi()
 
   },[])
 
