@@ -270,7 +270,7 @@ isFoundSeat(row, col) {
                >
                  <View>
                    <Text style={styles.seatText}>
-                     {isOccupied ? "X" : "0"}
+                     {isOccupied ? "X" : ""}
                    </Text>
                  </View>
                </TouchableOpacity>
@@ -301,7 +301,7 @@ isFoundSeat(row, col) {
                   >
                     <View>
                       <Text style={styles.seatText}>
-                        {isOccupied ? "X" : "0"}
+                        {isOccupied ? "X" : ""}
                       </Text>
                     </View>
                   </TouchableOpacity>

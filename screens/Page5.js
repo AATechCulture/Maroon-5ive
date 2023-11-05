@@ -1,28 +1,27 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import styles from '../components/Styles';
-import EmailApi from "../api/EmailApi"
 
-const boxWidth = "auto" 
-const boxHeight = 150
-
-export default function Page5() {
-  
-
-  //this is the on load function
-  useEffect(()=>{
-    //when the screen loads, send email
-    //EmailApi()
-
-  },[])
-
-  // <Page5 navigation={navigation} boxWidth={150} boxHeight={150} />
+export default function Page5({ navigation, boxWidth, boxHeight }) {
   return (
     <View style={styles.container}>
       <ImageBackground
         source={require('../Images/sky.png')}
         style={background.backgroundImage}
       >
+        <View style={styles.topImageContainer}>
+          <Image
+            source={require('../Images/American-Airlines-Logo.png')} // Your top image
+            style={styles2.topImage}
+          />
+        </View>
+        <View style={styles.startBody}>
+          <View style={styles.exclusiveText}>
+            <TouchableOpacity onPress={() => navigation.navigate('Page1')}>
+              <Text>Navigate to page 1</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
         <View style={[
           styles2.centeredBox,
           { width: boxWidth, height: boxHeight }
@@ -55,7 +54,6 @@ const styles2 = StyleSheet.create({
     backgroundColor: 'black',
     borderWidth: 2,
     borderColor: 'white',
-    bottom:200
   },
   circularPhoto: {
     width: 100,
@@ -63,10 +61,22 @@ const styles2 = StyleSheet.create({
     borderRadius: 50,
   },
   text: {
-    Font: "Bold",
+    fontWeight: "bold",
     padding: 20,
     color: 'white',
     fontSize: 18,
   },
-
+  topImage: {
+    width: '100%', // Set the width to the full screen width
+    height: 100, // Adjust the height as needed
+    resizeMode: 'cover', // You can choose 'cover', 'contain', or other values
+  },
 });
+
+styles.container = {
+  flex: 1,
+};
+
+styles.topImageContainer = {
+  flex: 0.2, // Adjust the flex value to control the size of the top image container
+};
