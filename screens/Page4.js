@@ -23,9 +23,6 @@ const rightSideSeats = [];
 const leftSeatAvailability = [];
 const rightSeatAvailability = [];
 
-// Define column labels
-const columnLabels = ['A', 'B', 'C', 'D', 'E', 'F'];
-
 for (let row = 0; row < numRows; row++) {
   const leftRow = [];
   const rightRow = [];
@@ -52,7 +49,7 @@ const styles = StyleSheet.create({
   side: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'flex-end', // Align to the right
   },
   row: {
     flexDirection: 'row',
@@ -65,6 +62,7 @@ const styles = StyleSheet.create({
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 10, // Adjust the borderRadius for soft edges
   },
   seatOccupied: {
     backgroundColor: 'grey',
@@ -74,21 +72,18 @@ const styles = StyleSheet.create({
   },
   seatSelected: {
     backgroundColor: 'grey',
+    borderWidth: 2,      // Add a border width
+    borderColor: 'white', // Set the border color to white
   },
   seatText: {
     color: 'white',
   },
   rowNumberContainer: {
     width: 20,
-    alignItems: 'center',
+    alignItems: 'flex-end', // Align row numbers to the right
   },
   rowNumberText: {
     fontSize: 14,
-    color: 'white',
-  },
-  columnLabel: {
-    fontSize: 14,
-    fontWeight: 'bold',
     color: 'white',
   },
 });
@@ -107,13 +102,14 @@ export default class Page4 extends Component {
   handleLeftSeatPress(row, col) {
     const { selectedLeftSeats } = this.state;
     const isSelected = selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
+
     if (isSelected) {
       // Deselect the seat
       const updatedSelectedSeats = selectedLeftSeats.filter(
         (seat) => !(seat.row === row && seat.col === col)
       );
       this.setState({ selectedLeftSeats: updatedSelectedSeats });
-    } else {
+    } else if (selectedLeftSeats.length < 5) { // Check if less than 5 seats are selected
       // Select the seat
       this.setState({
         selectedLeftSeats: [...selectedLeftSeats, { row, col }],
@@ -124,13 +120,14 @@ export default class Page4 extends Component {
   handleRightSeatPress(row, col) {
     const { selectedRightSeats } = this.state;
     const isSelected = selectedRightSeats.some((seat) => seat.row === row &&  seat.col === col);
+
     if (isSelected) {
       // Deselect the seat
       const updatedSelectedSeats = selectedRightSeats.filter(
         (seat) => !(seat.row === row && seat.col === col)
       );
       this.setState({ selectedRightSeats: updatedSelectedSeats });
-    } else {
+    } else if (selectedRightSeats.length < 5) { // Check if less than 5 seats are selected
       // Select the seat
       this.setState({
         selectedRightSeats: [...selectedRightSeats, { row, col }],
