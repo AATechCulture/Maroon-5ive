@@ -26,7 +26,6 @@ export default function Page1({ navigation }) {
             resizeMode='center'
           />
         </View>
-
         <View style={style.container}>
           <Image
             source={require("../Images/TheJonesFamily.png")}
