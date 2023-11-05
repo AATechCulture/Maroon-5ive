@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  dynamicComponent:{
+    backgroundColor: "gray"
+  },
   buttonContainer:{
     width:"100%",
     display: "flex",
@@ -46,14 +49,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
-  Input: {
-    width: "80%",
-    height: "40px",
-    backgroundColor: "rgba(255, 255, 255, 0.7)",
-    marginBottom: "20px",
-    padding: "10px",
-    borderRadius: "5px",
-  },
+  // Input: {
+  //   width: "80%",
+  //   height: "40px",
+  //   backgroundColor: "rgba(255, 255, 255, 0.7)",
+  //   marginBottom: "20px",
+  //   padding: "10px",
+  //   borderRadius: "5px",
+  // },
   startBody: {
     flex: 1,
     justifyContent: "center",
