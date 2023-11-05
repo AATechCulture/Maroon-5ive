@@ -147,6 +147,11 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     color: "#fff",
   },
+  questionContainer:{
+    flex: 1,
+    alignItems: "center",
+    height: "auto"
+  },
   questionBox: {
     backgroundColor: "white",
     padding: 20,
