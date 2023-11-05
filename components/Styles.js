@@ -1,20 +1,38 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  buttonContainer:{
-    width:"100%",
+  checkBoxContainer: {
+    height: 55,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  nameText: {
+    weight: 150,
+    height: 55,
+    justifyContent: "center",
     display: "flex",
-    alignItems: 'center',     // Center horizontally
+  },
+  nameAndCheckbox: {
+    width: 155,
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "flex-start", 
+    alignContent: "center",
+  },
+  buttonContainer: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center", // Center horizontally
   },
   button: {
-    backgroundColor: 'green',
+    backgroundColor: "green",
     padding: 10,
     borderRadius: 5,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   selectedValuesContainer: {
     marginTop: 20,
@@ -147,10 +165,10 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     color: "#fff",
   },
-  questionContainer:{
+  questionContainer: {
     flex: 1,
     alignItems: "center",
-    height: "auto"
+    height: "auto",
   },
   questionBox: {
     backgroundColor: "white",

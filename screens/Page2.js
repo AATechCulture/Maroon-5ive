@@ -1,36 +1,30 @@
-"react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StatusBar,
-  Button,
-  ImageBackground,
-  Image,
-} from "react-native";
-
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import { CheckBox } from "react-native-elements";
 import { Picker } from "@react-native-picker/picker";
 import styles from "../components/Styles";
 import { StyleSheet } from "react-native";
 import Footer from "../Footer";
 import Sky from "../Images/sky.png";
-import { image } from "react-native";
-import { useState } from "react";
 
 export default function Page2({ navigation }) {
   const [choice, setChoice] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedName, setSelectedName] = useState("Mike Jones");
+  const [selectedName, setSelectedName] = useState(["Mike Jones"]); // Use an array for selectedName
   const names = ["Mike Jones", "Sara T", "Ruth", "Jhon"];
+
+  const toggleNameSelection = (name) => {
+    const updatedNames = [...selectedName];
+    if (updatedNames.includes(name)) {
+      updatedNames.splice(updatedNames.indexOf(name), 1);
+    } else {
+      updatedNames.push(name);
+    }
+    setSelectedName(updatedNames);
+  };
 
   return (
     <View style={styles.startBody}>
-      <ImageBackground
-        source={require("../Images/sky.png")}
-        style={background.backgroundImage}
-      >
+      <ImageBackground source={Sky} style={background.backgroundImage}>
         <View style={styles.questionContainer}>
           <View style={styles.questionBox}>
             <View style={styles.questionTextContainer}>
@@ -62,15 +56,26 @@ export default function Page2({ navigation }) {
             </View>
             {choice ? (
               <View style={styles.dropdownContainer}>
-                <Text>Select Account Holder:</Text>
-                <Picker
-                  selectedValue={selectedName}
-                  onValueChange={(itemValue) => setSelectedName(itemValue)}
-                >
-                  {names.map((name, index) => (
-                    <Picker.Item key={index} label={name} value={name} />
-                  ))}
-                </Picker>
+                <Text>Select Account Holders:</Text>
+                {names.map((name, index) => (
+                  <View key={index} style={styles.checkboxItem}>
+                    <View style={styles.nameAndCheckbox}>
+                      <View style={styles.checkBoxContainer}>
+                        <CheckBox
+                          checked={selectedName.includes(name)}
+                          onPress={() => toggleNameSelection(name)}
+                        />
+                      </View>
+
+                      <Text
+                        onPress={() => toggleNameSelection(name)}
+                        style={styles.nameText}
+                      >
+                        {name}
+                      </Text>
+                    </View>
+                  </View>
+                ))}
               </View>
             ) : null}
           </View>
@@ -96,18 +101,5 @@ const background = StyleSheet.create({
     width: "100%",
     height: "100%",
     resizeMode: "contain",
-  },
-});
-
-const style = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: 400,
-    height: 220,
-    bottom: 0,
   },
 });
