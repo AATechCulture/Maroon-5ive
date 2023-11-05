@@ -26,7 +26,7 @@ export default function Page2({ navigation }) {
             <CheckBox />
           </View>
         </View>
-        <Footer />
+
       </View>
 
       <View style={styles.exclusiveText}>

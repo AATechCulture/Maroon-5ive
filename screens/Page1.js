@@ -21,7 +21,7 @@ export default function Page1({ navigation }) {
       >
         <View style={style.container}>
           <Image
-            source={require("C:/Users/ttaay/repo/Maroon-5ive/Images/MikeJones.png")}
+            source={require("../Images/MikeJones.png")}
             style={style.image}
             resizeMode='center'
           />
@@ -29,7 +29,7 @@ export default function Page1({ navigation }) {
 
         <View style={style.container}>
           <Image
-            source={require("C:/Users/ttaay/repo/Maroon-5ive/Images/TheJonesFamily.png")}
+            source={require("../Images/TheJonesFamily.png")}
             style={style.image2}
             resizeMode='center'
           />
@@ -37,7 +37,7 @@ export default function Page1({ navigation }) {
 
         <View style={style.container}>
           <Image
-            source={require("C:/Users/ttaay/repo/Maroon-5ive/Images/Miles.png")}
+            source={require("../Images/Miles.png")}
             style={style.image3}
             resizeMode='center'
           />
