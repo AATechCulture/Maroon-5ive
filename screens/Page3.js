@@ -38,7 +38,7 @@ export default function Page3({ navigation }) {
       }
     }
 
-    fetchData();
+    // fetchData();
   }, []); // The empty dependency array ensures this effect runs only once, like componentDidMount
 
   const componentsToRender = [];
