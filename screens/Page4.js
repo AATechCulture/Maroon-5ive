@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -88,18 +88,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Page4 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedLeftSeats: [], // Track the currently selected seats in the left column
-      selectedRightSeats: [], // Track the currently selected seats in the right column
-      storedNumber: props.groupnumber, // Store the parsed number here
-      setgroupnumber: props.setgroupnumber
-    };
-  }
+export default function Page4({ route }){
+  const { seatsToOccupy } = route.params;
+  const [selectedLeftSeats, setSelectedLeftSeats] = useState([]);
+  const [selectedRightSeats, setSelectedRightSeats] = useState([]);
 
-  handleLeftSeatPress(row, col) {
+  useEffect(() => {
+    // Additional logic to print information to the screen
+    const infoToPrint = 'Welcome to Page4!'; // Replace with the information you want to print
+    // You can use this infoToPrint in your component.
+  }, []);
+  
+
+  const handleLeftSeatPress =(row, col)=>{
     const { selectedLeftSeats } = this.state;
     const isSelected = selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
 
@@ -117,7 +118,7 @@ export default class Page4 extends Component {
     }
   }
 
-  handleRightSeatPress(row, col) {
+  const handleRightSeatPress = (row, col)=>{
     const { selectedRightSeats } = this.state;
     const isSelected = selectedRightSeats.some((seat) => seat.row === row &&  seat.col === col);
 
@@ -135,17 +136,16 @@ export default class Page4 extends Component {
     }
   }
 
-  isLeftSeatSelected(row, col) {
-    const { selectedLeftSeats } = this.state;
-    return selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
-  }
 
-  isRightSeatSelected(row, col) {
-    const { selectedRightSeats } = this.state;
-    return selectedRightSeats.some((seat) => seat.row === row && seat.col === col);
-  }
+// Function to check if a seat on the left side is selected
+const isLeftSeatSelected = (row, col) => {
+  return selectedLeftSeats.some((seat) => seat.row === row && seat.col === col);
+};
 
-  render() {
+// Function to check if a seat on the right side is selected
+const isRightSeatSelected = (row, col) => {
+  return selectedRightSeats.some((seat) => seat.row === row && seat.col === col);
+};
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -159,11 +159,11 @@ export default class Page4 extends Component {
                       styles.seat,
                       isOccupied
                         ? styles.seatOccupied
-                        : this.isLeftSeatSelected(rowIndex, colIndex)
+                        : isLeftSeatSelected(rowIndex, colIndex)
                         ? styles.seatSelected
                         : styles.seatAvailable,
                     ]}
-                    onPress={() => this.handleLeftSeatPress(rowIndex, colIndex)}
+                    onPress={() => handleLeftSeatPress(rowIndex, colIndex)}
                   >
                     <View>
                       <Text style={styles.seatText}>
@@ -188,11 +188,11 @@ export default class Page4 extends Component {
                       styles.seat,
                       isOccupied
                         ? styles.seatOccupied
-                        : this.isRightSeatSelected(rowIndex, colIndex)
+                        : isRightSeatSelected(rowIndex, colIndex)
                         ? styles.seatSelected
                         : styles.seatAvailable,
                     ]}
-                    onPress={() => this.handleRightSeatPress(rowIndex, colIndex)}
+                    onPress={() => handleRightSeatPress(rowIndex, colIndex)}
                   >
                     <View>
                       <Text style={styles.seatText}>
@@ -208,4 +208,4 @@ export default class Page4 extends Component {
       </ScrollView>
     );
   }
-}
+
