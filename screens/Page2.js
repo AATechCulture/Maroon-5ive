@@ -83,7 +83,7 @@ export default function Page2({ navigation }) {
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate("Page3")}
+            onPress={() => navigation.navigate("Page4")}
           >
             <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
